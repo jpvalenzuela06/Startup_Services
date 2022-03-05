@@ -14,6 +14,9 @@ public class Domain {
     private ArrayList<Provider> listProviders;
     private ArrayList<Category> listCategories;
 
+    /**
+     * Domain class constructor method
+     */
     public Domain ()
     {
         this.listServices = new ArrayList<>();
@@ -23,6 +26,9 @@ public class Domain {
         this.listCategories = new ArrayList<>();
     }
 
+    /**
+     * Method to initialize some test data
+     */
     public void initialize()
     {
         //Usuarios
@@ -68,6 +74,11 @@ public class Domain {
         listCategories.add(category7);
     }
 
+    /**
+     * Method to request a service
+     * @param service Service
+     * @return true if the service could be registered with the system
+     */
     public boolean requestService(Service service)
     {
         ArrayList<Provider> listProvidersService = findProviders(service);
@@ -91,6 +102,12 @@ public class Domain {
         }
     }
 
+    /**
+     *
+     Method to find providers that meet the conditions of a service
+     * @param service Service
+     * @return list providers
+     */
     public ArrayList<Provider> findProviders (Service service)
     {
         ArrayList<Provider> listPro = new ArrayList<>();
@@ -105,6 +122,11 @@ public class Domain {
         return listPro;
     }
 
+    /**
+     * Method for notifying providers
+     * @param listProviders List providers
+     * @param service Service
+     */
     public void notifyProviders(ArrayList<Provider> listProviders, Service service)
     {
         Notification notification = new Notification();
@@ -116,6 +138,9 @@ public class Domain {
         }
     }
 
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public ArrayList<Service> getListServices() {
         return listServices;
     }
@@ -135,4 +160,7 @@ public class Domain {
     public ArrayList<Category> getListCategories() {
         return listCategories;
     }
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }

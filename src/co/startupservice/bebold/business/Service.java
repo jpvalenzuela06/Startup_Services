@@ -24,6 +24,15 @@ public class Service {
     private Category category;
     private Domain domain;
 
+    /**
+     * Service class constructor method
+     * @param expectedPrice expected price for the provision of the service
+     * @param location Service location
+     * @param id service identifier
+     * @param creationDate service creation date
+     * @param customer Customer
+     * @param category Category
+     */
     public Service(float expectedPrice, Double location, long id, LocalDateTime creationDate, Customer customer, Category category) {
         this.expectedPrice = expectedPrice;
         this.location = location;
@@ -33,10 +42,18 @@ public class Service {
         this.category = category;
     }
 
+    /**
+     * method for change the service status
+     * @param status status
+     */
     public void changeStatus(String status) {
         this.status = status;
     }
 
+    /**
+     * Method to validate if the service has already completed its life cycle
+     * @return true if the service is still available, false otherwise
+     */
     public boolean validateLifeTime()
     {
         LocalDateTime now = LocalDateTime.now();
@@ -55,6 +72,12 @@ public class Service {
 
     }
 
+    /**
+     *
+     Method to notify a Customer
+     * @param customer Customer
+     * @param message Message
+     */
     public void notifyCustomer(Customer customer, String message)
     {
         if(this.notification == null)
@@ -66,6 +89,9 @@ public class Service {
         customer.getListNotifications().add(notification);
     }
 
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public float getServicePrice() {
         return servicePrice;
     }
@@ -169,4 +195,7 @@ public class Service {
     public void setDomain(Domain domain) {
         this.domain = domain;
     }
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }
