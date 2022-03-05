@@ -14,6 +14,12 @@ public class Category {
     private Domain domain;
 
 
+    /**
+     * Category class constructor method
+     * @param task
+     * @param basePrice
+     * @param admin
+     */
     public Category(String task, float basePrice, Admin admin) {
         this.task = task;
         this.basePrice = basePrice;
@@ -23,6 +29,7 @@ public class Category {
         listServices = new ArrayList<>();
     }
 
+    @Override
     public boolean equals(Object category)
     {
         if(category instanceof Category)
@@ -33,6 +40,10 @@ public class Category {
         return false;
     }
 
+    /**
+     * Method for calculating the average cost of the task
+     * @return average cost of the task
+     */
     public float calculateCostBase()
     {
         float sum = 0;
@@ -49,6 +60,9 @@ public class Category {
         return this.task + " " + basePrice;
     }
 
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public String getTask() {
         return task;
     }
@@ -96,4 +110,7 @@ public class Category {
     public void setDomain(Domain domain) {
         this.domain = domain;
     }
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }

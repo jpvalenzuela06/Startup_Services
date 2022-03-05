@@ -11,16 +11,33 @@ public class Customer extends User {
     private Service service;
     private Domain domain;
 
+    /**
+     * Customer class constructor method
+     * @param username User name
+     * @param password User password
+     * @param id User identifier
+     */
     public Customer(String username, String password, Long id) {
         super(username, password, id);
         listNotifications = new ArrayList<>();
     }
 
+    /**
+     * Method to request a service
+     * @param service Service
+     * @return true if the request was created successfully, false if the request could not be created
+     */
     public boolean requestService(Service service)
     {
         return domain.requestService(service);
     }
 
+    /**
+     *
+     * @param service Service
+     * @param rating Rating
+     * @return true if the service was successfully qualified, false otherwise
+     */
     public boolean rateService(Service service, int rating)
     {
         if(service.getStatus().equals("REALIZADO"))
@@ -34,6 +51,9 @@ public class Customer extends User {
 
     }
 
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public Service getService() {
         return service;
     }
@@ -65,4 +85,7 @@ public class Customer extends User {
     public void setListNotifications(ArrayList<Notification> listNotifications) {
         this.listNotifications = listNotifications;
     }
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }

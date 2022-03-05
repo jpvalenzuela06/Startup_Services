@@ -14,6 +14,13 @@ public class Provider extends User{
     private ArrayList<Service> listAssociatedServices;
     private ArrayList<Notification> listNotications;
     private Domain domain;
+
+    /**
+     * Provider class constructor method
+     * @param username User name
+     * @param password User password
+     * @param id User identifier
+     */
     public Provider(String username, String password, Long id) {
         super(username, password, id);
         listNotications = new ArrayList<>();
@@ -21,6 +28,11 @@ public class Provider extends User{
         listAbilities = new ArrayList<>();
     }
 
+    /**
+     * Method to check if the provider complies with the service conditions
+     * @param service Service
+     * @return true if the provider meets the conditions or false if it does not.
+     */
     public boolean isAppropriate(Service service) {
         if(this.status.equals("busy"))
         {
@@ -28,11 +40,9 @@ public class Provider extends User{
         }
         else
         {
-
             int pos = validateCategory(service.getCategory());
             if( pos != -1)
             {
-
                 if(validateDistance(service, pos))
                 {
                     return validatePrice(service, pos);
@@ -42,18 +52,37 @@ public class Provider extends User{
         }
     }
 
+    /**
+     * Method to validate if the price of the service is within the limits set by the provider
+     * @param service Service
+     * @param pos Ability index
+     * @return true if the price is within the ranges or false if it is not.
+     */
     private boolean validatePrice(Service service, int pos) {
         Ability ability = listAbilities.get(pos);
         float range = ability.getServicePrice() * 0.2f;
-        return ( service.getExpectedPrice() <= ability.getServicePrice() + range && service.getExpectedPrice() >= ability.getServicePrice() - range);
+        return ( service.getExpectedPrice() <= ability.getServicePrice() +
+                range && service.getExpectedPrice() >= ability.getServicePrice() - range);
     }
 
+    /**
+     * Method to validate if the service is within the provider's coverage distance.
+     * @param service Service
+     * @param pos Ability index
+     * @return true if the service coverage distance is within the ranges or false if it is not
+     */
     private boolean validateDistance(Service service , int pos) {
         Ability ability = listAbilities.get(pos);
         Double distance = service.getLocation();
         return (distance <= ability.getDistanceCoverage());
     }
 
+    /**
+     * Method to validate if the category of the service is within the provider's ability range
+     * @param category Category
+     * @return -1 if it does not match any of the provider's abilities,
+     *          if the category matches it returns the index of the corresponding ability.
+     */
     public int validateCategory( Category category)
     {
         for (int i = 0; i < listAbilities.size(); i++)
@@ -66,11 +95,20 @@ public class Provider extends User{
         return -1;
     }
 
+    /**
+     * Method to add a notification to the provider's list of notifications
+     * @param notification Notification
+     */
     public void reportNotification(Notification notification)
     {
         this.listNotications.add(notification);
     }
 
+    /**
+     * Method to accept the performance of a service by the provider
+     * @param notification Notification that is related to the service to be accepted
+     * @return true if the service was assigned to the provider or false if it was not assigned
+     */
     public boolean acceptService(Notification notification)
     {
         Service service = notification.getService();
@@ -88,16 +126,28 @@ public class Provider extends User{
         }
         return false;
     }
+
+    /**
+     * Method to calculate the average rating of the service performance
+     * @param rating Rating of service
+     */
     public void receiveRating(int rating)
     {
         this.averageRating = (averageRating+ rating) / 2;
     }
 
+    /**
+     * Method to take a service for granted
+     * @param service Service
+     */
     public void performService(Service service)
     {
         service.changeStatus("REALIZADO");
     }
 
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public int getAverageRating() {
         return averageRating;
     }
@@ -133,4 +183,7 @@ public class Provider extends User{
     public void setDomain(Domain domain) {
         this.domain = domain;
     }
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }

@@ -10,10 +10,10 @@ public class Notification {
     private Customer customer;
     private Service service;
 
-    public Notification()
-    {
-        listProviders = new ArrayList<>();
-    }
+
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public String getMessage() {
         return message;
     }
@@ -53,4 +53,7 @@ public class Notification {
     public void setService(Service service) {
         this.service = service;
     }
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }

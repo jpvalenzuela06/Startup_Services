@@ -2,12 +2,19 @@ package co.startupservice.bebold.business;
 
 public class Ability {
 
+
     private float servicePrice;
     private Double distanceCoverage;
     private Category category;
     private Provider provider;
 
-
+    /**
+     * Ability class constructor method
+     * @param servicePrice Price of the service
+     * @param distanceCoverage Service coverage distance
+     * @param category  Category to which the ability is associated
+     * @param provider Provider possessing the ability in question
+     */
     public Ability(float servicePrice, Double distanceCoverage, Category category, Provider provider) {
         this.servicePrice = servicePrice;
         this.distanceCoverage = distanceCoverage;
@@ -15,6 +22,9 @@ public class Ability {
         this.provider = provider;
     }
 
+    /**
+     * --------------------- Start Methods getters and setters ---------------------
+     */
     public float getServicePrice() {
         return servicePrice;
     }
@@ -46,4 +56,8 @@ public class Ability {
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
+
+    /**
+     * --------------------- End Methods getters and setters ---------------------
+     */
 }
